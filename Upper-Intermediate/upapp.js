@@ -1,0 +1,131 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const testForm = document.querySelector(".test-form");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwAulwP1rptFDHXCXEZzrr1aw8E_dUkWTZ5Xzpj5OMzUw6yWU-Ac-SPBz7NHLPbIqxj/exec";
+
+  // ✅ To‘g‘ri javoblar
+const correctAnswers = {
+  q1: 2,  // had studied
+  q2: 1,  // was completed
+  q3: 2,  // had seen
+  q4: 1,  // must have
+  q5: 3,  // whose
+  q6: 1,  // stay
+  q7: 2,  // painted
+  q8: 2,  // did I see
+  q9: 3,  // will have finished
+  q10: 3, // going
+  q11: 2, // rains
+  q12: 1, // interested
+  q13: 3, // in
+  q14: 1, // efficient
+  q15: 2, // reply
+  q16: 2, // could have
+  q17: 1, // to start
+  q18: 1, // was having
+  q19: 2, // cleaned
+  q20: 2, // might
+  q21: 1, // How technology affects work
+  q22: 1, // It saves time and avoids traffic
+  q23: 2, // Remote work reduces creativity
+  q24: 3, // A balance between both
+  q25: 2  // It reduces teamwork
+};
+
+
+
+
+
+  testForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // 🔹 Forma ma’lumotlari
+    const name = document.getElementById("name").value.trim();
+    const surname = document.getElementById("surname").value.trim();
+    const age = document.getElementById("age").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const source = document.getElementById("source").value.trim();
+
+    if (!name || !surname || !age || !phone) {
+      alert("Iltimos, barcha kerakli ma'lumotlarni to‘ldiring!");
+      return;
+    }
+
+    // 🔹 Test natijasi
+    let correct = 0;
+    let wrong = 0;
+    let wrongQuestions = [];
+
+    for (let i = 1; i <= 25; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const answerIndex = selected
+        ? Array.from(selected.parentNode.parentNode.children).indexOf(selected.parentNode) + 1
+        : null;
+
+      if (answerIndex === correctAnswers[`q${i}`]) {
+        correct++;
+      } else {
+        wrong++;
+        wrongQuestions.push(i);
+      }
+    }
+
+    // 🔹 Natija oynasi (modal)
+    const overlay = document.createElement("div");
+    overlay.classList.add("result-overlay");
+
+    const resultBox = document.createElement("div");
+    resultBox.classList.add("result-box");
+
+    resultBox.innerHTML = `
+      <h2>📋 Test Results</h2>
+      <p><strong>Name:</strong> ${name} ${surname}</p>
+      <p><strong>Age:</strong> ${age}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      ${source ? `<p><strong>Found us via:</strong> ${source}</p>` : ""}
+      <hr>
+      <p><strong>Level:</strong>Upper-Intermediate</p>
+      <p><strong>Total Questions:</strong> 25</p>
+      <p><strong>✅ Correct:</strong> ${correct}</p>
+      <p><strong>❌ Wrong (including unanswered):</strong> ${wrong}</p>
+      ${
+        wrongQuestions.length > 0
+          ? `<p><strong>Wrong questions:</strong> ${wrongQuestions.join(", ")}</p>`
+          : `<p>Excellent! All answers are correct 🎉</p>`
+      }
+      <button class="save-btn">Save Result <br>(Saqlash tugmasin bosing va kuting)</button>
+    `;
+
+    overlay.appendChild(resultBox);
+    document.body.appendChild(overlay);
+
+    // 🔹 Save button bosilganda Google Sheet ga yuborish
+    resultBox.querySelector(".save-btn").addEventListener("click", () => {
+      const formData = new FormData();
+      formData.append("timestamp", new Date().toLocaleString());
+      formData.append("first_name", name);
+      formData.append("last_name", surname);
+      formData.append("age", age);
+      formData.append("phone", phone);
+      formData.append("source", source);
+      formData.append("level", "Upper-Intermediate");
+      formData.append("total_questions", 25);
+      formData.append("correct_answers", correct);
+      formData.append("wrong_answers", wrong);
+      formData.append("wrong_question_numbers", wrongQuestions.join(", "));
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => {
+          if (res.ok) {
+            alert("✅ Natijalar muvaffaqiyatli saqlandi!");
+            overlay.remove();
+          } else {
+            alert("❌ Saqlashda xato: " + res.status);
+          }
+        })
+        .catch((err) => alert("❌ Xatolik: " + err));
+    });
+  });
+});

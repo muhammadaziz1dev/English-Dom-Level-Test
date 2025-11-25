@@ -1,0 +1,398 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: "Raleway", sans-serif;
+}
+.header {
+  padding: 10px 20px;
+  background-color: rgb(255, 181, 43);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  top: 0;
+  position: sticky;
+}
+.header-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-tugmalar {
+  display: flex;
+  gap: 30px;
+}
+.tugmalar-link {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(0, 0, 94);
+  padding: 10px 40px;
+  border-radius: 500px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+/* hero start */
+.hero {
+  padding: 100px 20px;
+}
+.hero-container {
+  text-align: center;
+  font-family: sans-serif;
+  font-family: "Raleway", sans-serif;
+}
+.hero-title {
+margin-bottom: 20px;
+font-size: 50px;
+}
+.same-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.hero-text {
+  margin-bottom: 50px;
+}
+.hero-link {
+  background-color: rgb(255, 181, 43);
+  color: white;
+  padding: 10px 50px;
+  border-radius: 100px;
+  text-decoration: none;
+}
+/* hero end */
+
+/* level start */
+.levels {
+  padding: 50px 20px;
+}
+.levels-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+}
+.level-box {
+  width: 280px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(255, 181, 43);
+  color: rgb(0, 0, 94);
+  cursor: pointer;
+}
+.level-box:hover{
+  background: rgb(0, 0, 94);
+  color: rgb(255, 181, 43);
+  box-shadow: 5px 5px 10px #ccc, -5px -5px 10px #fff;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.level-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.levels-text {
+  font-size: 16px;
+  color: white;
+}
+/* =================== RESPONSIVE MEDIA =================== */
+
+/* Planshetlar uchun (Laptop/Tablet) */
+@media (max-width: 1024px) {
+  .header-container {
+    max-width: 90%;
+  }
+
+  .nav-tugmalar {
+    gap: 20px;
+  }
+
+  .tugmalar-link {
+    padding: 10px 25px;
+    font-size: 15px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .levels-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .level-box {
+    width: 100%;
+  }
+}
+
+/* Telefonlar uchun */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-tugmalar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .tugmalar-link {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero-title {
+    font-size: 34px;
+  }
+
+  .hero-text {
+    font-size: 16px;
+  }
+
+  .levels-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .level-box {
+    width: 100%;
+  }
+}
+
+/* Juda kichik ekranlar uchun (kichik telefonlar) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .same-title {
+    font-size: 16px;
+  }
+
+  .hero-text {
+    font-size: 14px;
+  }
+
+  .tugmalar-link {
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+
+  .hero-link {
+    padding: 8px 30px;
+    font-size: 14px;
+  }
+
+  .levels {
+    padding: 40px 15px;
+  }
+}
+.footer {
+  background-color: rgb(0, 0, 94);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-bottom p {
+  font-size: 15px;
+  color: #f1f1f1;
+  letter-spacing: 0.5px;
+}
+
+.footer-bottom span {
+  color: rgb(255, 181, 43);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom span:hover {
+  color: white;
+}
+
+/* Responsivlik */
+@media (max-width: 480px) {
+  .footer-bottom p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+/* beginner css */
+.test-container {
+  max-width: 800px;
+  background: white;
+  margin: 40px auto;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 94, 0.1);
+}
+
+.test-title {
+  text-align: center;
+  color: rgb(0, 0, 94);
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  color: rgb(0, 0, 94);
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: rgb(0, 0, 94);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgb(255, 181, 43);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.divider {
+  margin: 30px 0;
+  border: none;
+  height: 2px;
+  background: rgb(255, 181, 43);
+  border-radius: 5px;
+}
+
+.questions {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.questions li {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.options {
+  margin-top: 8px;
+}
+
+.options label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: 400;
+}
+
+.submit-btn {
+  background: rgb(0, 0, 94);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s;
+  display: block;
+  margin: 30px auto 0;
+}
+
+.submit-btn:hover {
+  background: rgb(255, 181, 43);
+  color: rgb(0, 0, 94);
+}
+
+/* Responsiv */
+@media (max-width: 600px) {
+  .test-container {
+    padding: 20px;
+  }
+
+  .test-title {
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+}
+/* results */
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.result-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  animation: fadeIn 0.4s ease;
+}
+
+.result-box h2 {
+  text-align: center;
+  color: rgb(0, 0, 94);
+  margin-bottom: 15px;
+}
+
+.result-box p {
+  margin: 8px 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.save-btn {
+  display: block;
+  margin: 20px auto 0;
+  background: rgb(255, 181, 43);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: rgb(255, 181, 43);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
